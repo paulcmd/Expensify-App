@@ -24,7 +24,9 @@ const resetCount = () =>({
     type: 'RESET'
 })
 
-const store = createStore((state = { count: 0 }, action) => {
+
+// A reducer is a pure function ie. should not take in/manipulate other values from variables other than those submitted to arguments eg count and action
+const countReducer = (state = { count: 0 }, action) => {
     switch (action.type) {
         case 'INCREMENT':
             return {
@@ -42,7 +44,7 @@ const store = createStore((state = { count: 0 }, action) => {
                 count: 0
             }
 
-        case 'SET':
+        case 'SET':  
             return {
                 count: action.count
             }
@@ -50,7 +52,9 @@ const store = createStore((state = { count: 0 }, action) => {
         default:
             return state
     }
-})
+}
+
+const store = createStore(countReducer)
 
 store.subscribe(() => console.log(store.getState()))  //renders every action happening to state
 
@@ -63,7 +67,7 @@ store.dispatch(incrementCount({ incrementBy: 10 }))
 
 store.dispatch(decrementCount({ decrementBy: 20 }))
 
-store.dispatch(setCount({ count: 2547 }))
+store.dispatch(setCount({ count: 101 }))
 
 store.dispatch(resetCount())
 

@@ -1,7 +1,7 @@
 //___________Object Destructuring__________________________________
 
 // const person = {
-    
+ //    name: 'Paul'   
 //     age: 33,
 //     location: {
 //         city: 'Tucson',
