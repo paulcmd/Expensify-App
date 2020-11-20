@@ -101,7 +101,7 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
 
 const filtersReducerDefaultState = {
     text: '',
-    sortBy: 'date', //or amount
+    sortBy: 'amount', //or amount
     startDate: undefined,
     endDate: undefined
 }
@@ -148,15 +148,26 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     //if all 3 return true, filter will keep the expense in the array and it will be visible
     //if start date is undefined, typeof will be true(undefined not a number) and startDate wont be taken into account on the right side where actual filtering occurs. If createdAt < startDate, it will be false and expense will be filtered out. If createdAt > startDate, expense will be kept in visible array(true).
     // || AND OR returns a boolean value as well as the value that passed the condition eg. the expense is stored in the new array
-    return expenses.filter((expense) => {
-        const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate
-        const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate
-        const textMatch =  expense.description.toLowerCase().includes(text.toLowerCase())       //text is already a string
+    return expenses
+        .filter((expense) => {
+            const startDateMatch =
+                typeof startDate !== 'number' || expense.createdAt >= startDate
+            const endDateMatch =
+                typeof endDate !== 'number' || expense.createdAt <= endDate
+            const textMatch = expense.description
+                .toLowerCase()
+                .includes(text.toLowerCase()) //text is already a string
 
-        return startDateMatch && endDateMatch && textMatch
-    }).sort((a,b) => {          //.sort is running on expenses filter is done
-
-    })
+            return startDateMatch && endDateMatch && textMatch
+        })
+        .sort((a, b) => {
+            //.sort is running on expenses after filter is done(chaining). the final array will be returned by both to getVisibleExpenses
+            if (sortBy === 'date') {
+                return a.createdAt < b.createdAt ? 1 : -1  
+            } else if (sortBy === 'amount') {
+                return a.amount < b.amount ? 1 : -1    //return 1 if b is greater, else return -1
+            }
+        })
 }
 
 //_____Store Creation_________________________________________________________
@@ -168,21 +179,18 @@ const store = createStore(
     })
 )
 
-
 store.subscribe(() => {
     const state = store.getState()
     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
     console.log(visibleExpenses)
 })
 
-
 const expenseOne = store.dispatch(
     addExpense({
         description: 'rent',
         note: 'Rent for July',
-        amount: 200,
-        createdAt: 1000
-        
+        amount: 4000,
+        createdAt: 5
     })
 )
 
@@ -191,8 +199,7 @@ const expenseTwo = store.dispatch(
         description: 'CAR',
         note: 'Mazda cx9',
         amount: 3000,
-        createdAt: 500 
-        
+        createdAt: 10
     })
 )
 
@@ -203,15 +210,15 @@ const expenseTwo = store.dispatch(
 
 // console.log(expenseOne)
 
-store.dispatch(setTextFilter('re'))
+//store.dispatch(setTextFilter('re'))
 // store.dispatch(setTextFilter())
 
-// store.dispatch(sortByAmount())
+store.dispatch(sortByAmount())
 // store.dispatch(sortByDate())
 
- store.dispatch(setStartDate(0))
+//store.dispatch(setStartDate(0))
 // store.dispatch(setStartDate())
- store.dispatch(setEndDate(1250))
+//store.dispatch(setEndDate(1250))
 
 // const demoState = {
 //     expenses: [
