@@ -42,6 +42,15 @@ const expenseTwo = store.dispatch(
     })
 )
 
+const expenseThree = store.dispatch(
+    addExpense({
+        description: 'Rent bill',
+        note: 'rent for sept',
+        amount: 1000,
+        createdAt: 15
+    })
+)
+
 // const removeItem = store.dispatch(removeExpense({ id: expenseOne.expense.id }))
 // const editItem = store.dispatch(
 //     editExpense(expenseTwo.expense.id, { amount: 5000 })
@@ -49,8 +58,6 @@ const expenseTwo = store.dispatch(
 
 // console.log(expenseOne)
 
-store.dispatch(setTextFilter('bi'))
-// store.dispatch(setTextFilter())
 
 //store.dispatch(sortByAmount())
 // store.dispatch(sortByDate())

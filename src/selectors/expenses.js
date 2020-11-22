@@ -1,4 +1,4 @@
-//_____Get Visible Expenses__________________________________________________
+//_____Get Visible Expenses(returns filtered and sorted arrays_________________________________
 
 export default (expenses, { text, sortBy, startDate, endDate }) => {
     //if all 3 return true, filter will keep the expense in the array and it will be visible
