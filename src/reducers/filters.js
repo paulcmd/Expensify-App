@@ -3,7 +3,7 @@
 
 const filtersReducerDefaultState = {
     text: '',
-    sortBy: 'amount', //or amount
+    sortBy: '', //amount or date
     startDate: undefined,
     endDate: undefined
 }

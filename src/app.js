@@ -38,7 +38,7 @@ const expenseTwo = store.dispatch(
         description: 'Gas bill',
         note: 'Gas for Aug',
         amount: 250,
-        createdAt: 10
+        createdAt: 20
     })
 )
 
@@ -58,6 +58,7 @@ const expenseThree = store.dispatch(
 
 // console.log(expenseOne)
 
+//store.dispatch(setTextFilter('gas')
 
 //store.dispatch(sortByAmount())
 // store.dispatch(sortByDate())
