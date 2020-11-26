@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 //_____Get Visible Expenses(returns filtered and sorted arrays_________________________________
 
 export default (expenses, { text, sortBy, startDate, endDate }) => {
@@ -6,10 +8,17 @@ export default (expenses, { text, sortBy, startDate, endDate }) => {
     // || AND OR returns a boolean value as well as the value that passed the condition eg. the expense is stored in the new array
     return expenses
         .filter((expense) => {
-            const startDateMatch =
-                typeof startDate !== 'number' || expense.createdAt >= startDate
-            const endDateMatch =
-                typeof endDate !== 'number' || expense.createdAt <= endDate
+            const createdAtMoment = moment(expense.createdAt)
+            //console.log(createdAtMoment)
+
+            const startDateMatch = startDate
+                ? startDate.isSameOrBefore(createdAtMoment, 'day')
+                : true
+
+            const endDateMatch = endDate
+                ? endDate.isSameOrAfter(createdAtMoment, 'day')
+                : true
+            
             const textMatch = expense.description
                 .toLowerCase()
                 .includes(text.toLowerCase()) //text is already a string
@@ -19,9 +28,9 @@ export default (expenses, { text, sortBy, startDate, endDate }) => {
         .sort((a, b) => {
             //.sort is running on expenses after filter is done(chaining). the final array will be returned by both to getVisibleExpenses
             if (sortBy === 'date') {
-                return a.createdAt < b.createdAt ? 1 : -1  
+                return a.createdAt < b.createdAt ? 1 : -1
             } else if (sortBy === 'amount') {
-                return a.amount < b.amount ? 1 : -1    //return 1 if b is greater, else return -1
+                return a.amount < b.amount ? 1 : -1 //return 1 if b is greater, else return -1
             }
         })
 }

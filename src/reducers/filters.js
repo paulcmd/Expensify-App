@@ -1,11 +1,11 @@
-
+import moment from 'moment'
 //_____Filters Reducer_______________________________________________________
 
 const filtersReducerDefaultState = {
     text: '',
     sortBy: '', //amount or date
-    startDate: undefined,
-    endDate: undefined
+    startDate: moment().startOf('month'), //user will see expenses for that month, by default
+    endDate: moment().endOf('month')
 }
 
 export default (state = filtersReducerDefaultState, action) => {

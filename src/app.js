@@ -29,7 +29,7 @@ const expenseOne = store.dispatch(
         description: 'Water bill',
         note: 'water bill for July',
         amount: 200,
-        createdAt: 5
+        createdAt: 10000000000
     })
 )
 
