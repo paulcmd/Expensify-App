@@ -5,7 +5,7 @@ const filtersReducerDefaultState = {
     text: '',
     sortBy: '', //amount or date
     startDate: moment().startOf('month'), //user will see expenses for that month, by default
-    endDate: moment().endOf('month')
+    endDate: moment().endOf('month') // end date will default to end of month
 }
 
 export default (state = filtersReducerDefaultState, action) => {

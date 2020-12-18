@@ -20,14 +20,14 @@ export const sortByAmount = () => ({
 //SET_START_DATE
 
 export const setStartDate = (startDate) => ({
-    //no need to default startDate to undefined. already done in default state
+    //no need to default to undefined. already done in default state
     type: 'SET_START_DATE',
     startDate
 })
 
 //SET_END_DATE
 
-export const setEndDate = (endDate = undefined) => ({
+export const setEndDate = (endDate) => ({
     type: 'SET_END_DATE',
     endDate
 })

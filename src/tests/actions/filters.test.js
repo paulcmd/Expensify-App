@@ -19,3 +19,23 @@ test('should generate set end date action object', () => {
         endDate: moment(0)
     })
 }) 
+
+test('should generate set text filter action object', () => {
+
+    const action = setTextFilter(text)
+
+    expect(action).toEqual({
+        type: 'SET_TEXT_FILTER',
+        text
+    })
+})
+
+test('should generate set text filter action object with default value', () => {
+
+    const action = setTextFilter()
+
+    expect(action).toEqual({
+        type: 'SET_TEXT_FILTER'
+    })
+})
+
