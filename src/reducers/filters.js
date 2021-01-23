@@ -3,8 +3,8 @@ import moment from 'moment'
 
 const filtersReducerDefaultState = {
     text: '',
-    sortBy: '', //amount or date
-    startDate: moment().startOf('month'), //user will see expenses for that month, by default
+    sortBy: 'date', //amount or date
+    startDate: moment().startOf('month'), //user will see expenses for that month, by default. moment() takes the current time
     endDate: moment().endOf('month') // end date will default to end of month
 }
 
