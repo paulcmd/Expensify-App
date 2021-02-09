@@ -1,8 +1,10 @@
 const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = (env) => {
 
     const isProduction = env === 'production'
+    const CSSExtract = new ExtractTextPlugin('styles.css')
      
     return {
         entry: './src/app.js',
@@ -21,16 +23,21 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.s?css$/,
-                    use: [
-                        'style-loader',
-                        'css-loader',
-                        'sass-loader'
-                    ]
+                    use: CSSExtract.extract({
+                        use: [
+                            'css-loader',
+                            'sass-loader'
+                        ]
+                        // using CSSExtract to extract contents of the 2 files into styles.css
+                    })
                 }
             ]
         },
-    
-        devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',   //cheap-module-eval-source-map takes you to the exact code you wrote when debugging with console, instead of the generated babel code
+        
+        plugins: [
+            CSSExtract
+        ],
+        devtool: isProduction ? 'source-map' : 'inline-source-map',   //cheap-module-eval-source-map takes you to the exact code you wrote when debugging with console, instead of the generated babel code
         
         devServer: {
             contentBase: path.join(__dirname, 'public'),
