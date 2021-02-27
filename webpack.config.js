@@ -10,7 +10,7 @@ module.exports = (env) => {
         entry: './src/app.js',
 
         output: {
-            path: path.join(__dirname, 'public'),
+            path: path.join(__dirname, 'public', 'dist'),
             filename: 'bundle.js'
         },
     
@@ -53,7 +53,8 @@ module.exports = (env) => {
         
         devServer: {
             contentBase: path.join(__dirname, 'public'),
-            historyApiFallback: true                //tells browser we are handling all routing through index.html. Routing will be handled client-side, not server-side
+            historyApiFallback: true,                //tells browser we are handling all routing through index.html. Routing will be handled client-side, not server-side
+            publicPath: '/dist'
         }
 
     }
