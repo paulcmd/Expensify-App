@@ -9,7 +9,7 @@ export default (state = expensesReducerDefaultState, action) => {               
         case 'REMOVE_EXPENSE':
             return state.filter(({ id }) => id !== action.id) // { id } we are destructuring id from expense that we virtually pass in i.e (expense) => expense.id
         //id destructures the id from each expense.
-        //if not equal, statement will be true, item will be kept
+        //if not equal, statement will be true, items will be kept. if equal, item will be removed.
         case 'EDIT_EXPENSE':
             return state.map((expense) => {
                 if (expense.id === action.id) {

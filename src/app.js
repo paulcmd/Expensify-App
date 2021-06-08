@@ -13,43 +13,45 @@ import { sortByAmount } from './actions/filters'
 import { setStartDate } from './actions/filters'
 import { setEndDate } from './actions/filters'
 
+
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
+import './firebase/firebase'
 
 const store = configureStore()
 
-store.subscribe(() => {
-    const state = store.getState()
-    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
-    console.log(visibleExpenses)
-})
+// store.subscribe(() => {
+//     const state = store.getState()
+//     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
+//     console.log(visibleExpenses)
+// })
 
-const expenseOne = store.dispatch(
-    addExpense({
-        description: 'Water bill',
-        note: 'water bill for July',
-        amount: 200,
-        createdAt: 10000000000
-    })
-)
+// const expenseOne = store.dispatch(
+//     addExpense({
+//         description: 'Water bill',
+//         note: 'water bill for July',
+//         amount: 200,
+//         createdAt: 10000000000
+//     })
+// )
 
-const expenseTwo = store.dispatch(
-    addExpense({
-        description: 'Gas bill',
-        note: 'Gas for Aug',
-        amount: 250,
-        createdAt: 20
-    })
-)
+// const expenseTwo = store.dispatch(
+//     addExpense({
+//         description: 'Gas bill',
+//         note: 'Gas for Aug',
+//         amount: 250,
+//         createdAt: 20
+//     })
+// )
 
-const expenseThree = store.dispatch(
-    addExpense({
-        description: 'Rent bill',
-        note: 'rent for sept',
-        amount: 1000,
-        createdAt: 15
-    })
-)
+// const expenseThree = store.dispatch(
+//     addExpense({
+//         description: 'Rent bill',
+//         note: 'rent for sept',
+//         amount: 1000,
+//         createdAt: 15
+//     })
+// )
 
 // const removeItem = store.dispatch(removeExpense({ id: expenseOne.expense.id }))
 // const editItem = store.dispatch(
