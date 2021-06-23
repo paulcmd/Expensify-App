@@ -4,7 +4,8 @@ import moment from 'moment'
 
 export default (expenses, { text, sortBy, startDate, endDate }) => {
     //if all 3 return true, filter will keep the expense in the array and it will be visible
-    //if start date is undefined, typeof will be true(undefined not a number) and startDate wont be taken into account on the right side where actual filtering occurs. If createdAt < startDate, it will be false and expense will be filtered out. If createdAt > startDate, expense will be kept in visible array(true).
+    //if start date is undefined, typeof will be true(undefined not a number) and startDate wont be taken into account on the right side where actual filtering occurs.
+    // If createdAt < startDate, it will be false and expense will be filtered out. If createdAt > startDate, expense will be kept in visible array(true).
     // || AND OR returns a boolean value as well as the value that passed the condition eg. the expense is stored in the new array
     return expenses
         .filter((expense) => {
