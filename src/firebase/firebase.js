@@ -16,18 +16,21 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 
-// .ref method references the root of the database. .set() allows us to set the data we want to set
 firebase
     .database()
     .ref()
     .set({
         name: 'Paul Wachira',
-        age: 35,
+        age: 30,
         isSingle: true,
         location: {
             city: 'Tucson',
             country: 'United States'
         }
+    }).then(() => {
+        console.log('The data is saved') // the promise in this case returns nothing. this is just to inform that data was saved
+    }).catch((error) => {
+        console.log('Error: ', error)
     })
 
 firebase.database().ref('attributes').set({
@@ -35,6 +38,7 @@ firebase.database().ref('attributes').set({
     weight: '170 lbs'
 })
 
+console.log('I made a request to change the data')
 
 /*
   ref() references different parts of the db/tables

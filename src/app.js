@@ -17,7 +17,7 @@ import { setEndDate } from './actions/filters'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
 import './firebase/firebase'
-import './playground/promises'
+//import './playground/promises'
 
 const store = configureStore()
 
