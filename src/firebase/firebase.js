@@ -16,8 +16,9 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 
-firebase
-    .database()
+const database = firebase.database()
+
+database
     .ref()
     .set({
         name: 'Paul Wachira',
@@ -27,18 +28,25 @@ firebase
             city: 'Tucson',
             country: 'United States'
         }
-    }).then(() => {
+    })
+    .then(() => {
         console.log('The data is saved') // the promise in this case returns nothing. this is just to inform that data was saved
-    }).catch((error) => {
+    })
+    .catch((error) => {
         console.log('Error: ', error)
     })
 
-firebase.database().ref('attributes').set({
-    height: '6 ft',
-    weight: '170 lbs'
-})
+// database           // removing a specific object
+//     .ref('isSingle')
+//     .remove()
+//     .then(() => {
+//         console.log('data was removed')
+//     })
+//     .catch(() => {
+//         console.log('did not remove data')
+//     })
 
-console.log('I made a request to change the data')
+// database.ref('isSingle').remove(null) // passing null to remove removes the data as well
 
 /*
   ref() references different parts of the db/tables
