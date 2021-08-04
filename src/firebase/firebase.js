@@ -18,37 +18,57 @@ firebase.initializeApp(firebaseConfig)
 
 const database = firebase.database()
 
-database
-    .ref()
-    .set({
-        name: 'Paul Wachira',
-        age: 30,
-        isSingle: true,
-        location: {
-            city: 'Tucson',
-            country: 'United States'
-        }
-    })
-    .then(() => {
-        console.log('The data is saved') // the promise in this case returns nothing. this is just to inform that data was saved
-    })
-    .catch((error) => {
-        console.log('Error: ', error)
-    })
-
-// database           // removing a specific object
-//     .ref('isSingle')
-//     .remove()
+// database
+//     .ref()
+//     .set({
+//         name: 'Paul Wachira',
+//         age: 30,
+//         isSingle: true,
+//         location: {
+//             city: 'Tucson',
+//             country: 'United States'
+//         }
+//     })
 //     .then(() => {
-//         console.log('data was removed')
+//         console.log('The data is saved') // the promise in this case returns nothing. this is just to inform that data was saved
 //     })
-//     .catch(() => {
-//         console.log('did not remove data')
+//     .catch((error) => {
+//         console.log('Error: ', error)
 //     })
 
-// database.ref('isSingle').remove(null) // passing null to remove removes the data as well
+// database.ref().update({
+//     name: 'Paul Wachira',
+//     age:25 ,
+//     isSingle: null,
+//     location: {
+//         city: 'Tucson',
+//         country: 'United States'
+//     },
+//     job: 'Software developer'
+// })
+// .then(() => {
+//         console.log('The data is saved') // the promise in this case returns nothing. this is just to inform that data was saved
+//     })
+//     .catch((error) => {
+//         console.log('Error: ', error)
+//     })
+
+database           // removing a specific object
+    .ref('isSingle')
+    .remove()
+    .then(() => {
+        console.log('data was removed')
+    })
+    .catch(() => {
+        console.log('did not remove data')
+    })
+
+database.ref('isSingle').remove(null) // passing null to remove removes the data as well
 
 /*
+
+to update a nest object, use '' eg. updating city :
+'location/city' : "Boston"
   ref() references different parts of the db/tables
   if we pass nothing to ref() we access the root of the db
   set() sets a value for that reference 
