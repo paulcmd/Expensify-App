@@ -4,10 +4,10 @@ import ExpenseListItem from './ExpenseListItem'
 import filteredExpenses from '../selectors/expenses'
 
 //exported defaults can be given any name eg. filteredExpenses
-const ExpenseList = (props) => (
+const ExpenseList = ({ expenses }) => (
     <div>
         <h1>Expense List</h1>
-        {props.expenses.map((expense, index) => {
+        {expenses.map((expense, index) => {
             return <ExpenseListItem key={index} {...expense} />
         })}
     </div>
