@@ -63,10 +63,18 @@ const database = firebase.database()
 //         console.log('did not remove data')
 //     })
 
-database.ref().update({
-    name: 'Mike',
-    age: 33,
-    job: 'Software developer'
+// database.ref().update({
+//     name: 'Mike',
+//     age: 33 ,
+//     job: 'Software developer'
+// })
+
+database.ref()
+    .once('value')
+.then((snapshot) => {
+    console.log('Snapshot : ', snapshot.val())
+}).catch((e) => {
+    console.log('Error : ', e)
 })
 
 // database.ref('isSingle').remove(null) // passing null to remove removes the data as well
