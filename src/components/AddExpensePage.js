@@ -4,15 +4,18 @@ import { connect } from 'react-redux'
 import { addExpense } from '../actions/expenses'
 
 const AddExpensePage = ({ dispatch, history }) => {
+    // const history = useHistory()
     const onSubmit = (expense) => {
         dispatch(addExpense(expense))
         history.push('/')
     }
-    <div>
-        <h1>Expense Form</h1>
+    return (
+        <div>
+            <h1>Expense Form</h1>
 
-        <ExpenseForm onSubmit={onSubmit} />
-    </div>
+            <ExpenseForm onSubmit={onSubmit} />
+        </div>
+    )
 }
 export default connect()(AddExpensePage)
 

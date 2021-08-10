@@ -53,19 +53,28 @@ const database = firebase.database()
 //         console.log('Error: ', error)
 //     })
 
-database           // removing a specific object
-    .ref('isSingle')
-    .remove()
-    .then(() => {
-        console.log('data was removed')
-    })
-    .catch(() => {
-        console.log('did not remove data')
-    })
+// database           // removing a specific object
+//     .ref('isSingle')
+//     .remove()
+//     .then(() => {
+//         console.log('data was removed')
+//     })
+//     .catch(() => {
+//         console.log('did not remove data')
+//     })
 
-database.ref('isSingle').remove(null) // passing null to remove removes the data as well
+database.ref().update({
+    name: 'Mike',
+    age: 33,
+    job: 'Software developer'
+})
+
+// database.ref('isSingle').remove(null) // passing null to remove removes the data as well
 
 /*
+
+How to run : yarn run dev-server 
+localhost:8080
 
 to update a nest object, use '' eg. updating city :
 'location/city' : "Boston"
