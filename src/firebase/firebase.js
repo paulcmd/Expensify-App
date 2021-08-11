@@ -64,7 +64,6 @@ const database = firebase.database()
 //     })
 // database.ref('isSingle').remove(null) // passing null to remove removes the data as well
 
-
 // database.ref().update({
 //     name: 'Mike',
 //     age: 33 ,
@@ -84,10 +83,16 @@ const database = firebase.database()
 // database.ref().on('value', (snapshot) => {
 //     console.log('Snapshot : ', snapshot.val())
 // })
-    // .on queries the db every time data changes
+// .on queries the db every time data changes
 
-
-
+const onValueChange = database.ref().on('value', (snapshot) => {
+    console.log('Snapshot : ', snapshot.val())
+    
+})
+//on initiates a subscription. off does the oposite
+setTimeout(() => {
+    database.ref().off(onValueChange)
+}, 3000)
 
 /*
 
