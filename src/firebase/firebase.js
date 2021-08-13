@@ -18,30 +18,42 @@ firebase.initializeApp(firebaseConfig)
 
 const database = firebase.database()
 
+database
+    .ref('expenses')
+    .once('value')
+    .then((snapshot) => {
+        const expenses = []
 
-database.ref('expenses').push({
-    amount: '30',
-    createdAt: 25623145879,
-    description: 'Phone Bill',
-    note: ''
-})
+        snapshot.forEach((snap) => {
+            expenses.push({
+                id: snap.key,
+                ...snap.val()
+            })
+        })
 
-database.ref('expenses').push({
-    amount: '200',
-    createdAt: 25623145879,
-    description: 'Rent',
-    note: ''
-})
+        console.log(expenses)
+    })
 
-database.ref('expenses').push({
-    amount: '80',
-    createdAt: 25623145879,
-    description: 'Insurance',
-    note: ''
-})
-    
-    
+// database.ref('expenses').push({
+//     amount: '30',
+//     createdAt: 25623145879,
+//     description: 'Phone Bill',
+//     note: ''
+// })
 
+// database.ref('expenses').push({
+//     amount: '200',
+//     createdAt: 25623145879,
+//     description: 'Rent',
+//     note: ''
+// })
+
+// database.ref('expenses').push({
+//     amount: '80',
+//     createdAt: 25623145879,
+//     description: 'Insurance',
+//     note: ''
+// })
 
 // database
 //     .ref()
@@ -112,7 +124,7 @@ database.ref('expenses').push({
 
 // const onValueChange = database.ref('/location/city').on('value', (snapshot) => {
 //     console.log('Snapshot : ', snapshot.val())
-    
+
 // })
 // //on initiates a subscription. off does the oposite, cancels the subscription
 // setTimeout(() => {
@@ -129,7 +141,6 @@ database.ref('expenses').push({
 //         } city`
 //     )
 // })
-
 
 //on initiates a subscription. off does the oposite
 
