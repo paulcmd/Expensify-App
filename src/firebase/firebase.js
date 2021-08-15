@@ -30,8 +30,13 @@ database
             })
         })
 
-        console.log(expenses)
+        console.log('Expenses : ', expenses)
     })
+
+    /* 
+    get a snapshot of the data(array) in the db and for each item, push into
+    the newly created array expenses
+    */
 
 // database.ref('expenses').push({
 //     amount: '30',
