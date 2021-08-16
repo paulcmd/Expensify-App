@@ -21,4 +21,8 @@ const Header = () => (
     </div>
 )
 
+/* 
+NavLink changed to Link
+*/
+
 export default Header
