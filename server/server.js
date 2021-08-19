@@ -11,7 +11,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'))
 })
 // * will serve all routes not in the public . * is for all unmatched routes
-//10 -- if what user requested is not in public folder, just serve index.html
+//10 - if what user requested is not in public folder, just serve index.html
 
 app.listen(PORT, () => {
     console.log(`Server is up on port ${PORT}`)
