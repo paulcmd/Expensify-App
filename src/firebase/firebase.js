@@ -18,20 +18,24 @@ firebase.initializeApp(firebaseConfig)
 
 const database = firebase.database()
 
-database
-    .ref('expenses')
-    .on('value', (snapshot) => {
-        const expenses = []
+export { firebase, database as default }
 
-        snapshot.forEach((snap) => {
-            expenses.push({
-                id: snap.key,
-                ...snap.val()
-            })
-        })
+// we are exporting firebase in case user needs to use it, database is the default export
 
-        console.log('Expenses : ', expenses)
-    })
+// database
+//     .ref('expenses')
+//     .on('value', (snapshot) => {
+//         const expenses = []
+
+//         snapshot.forEach((snap) => {
+//             expenses.push({
+//                 id: snap.key,
+//                 ...snap.val()
+//             })
+//         })
+
+//         console.log('Expenses : ', expenses)
+//     })
 
     /* 
     get a snapshot of the data(array) in the db and for each item, push into

@@ -5,13 +5,15 @@ import thunk from 'redux-thunk'
 
 //_____Store Creation_________________________________________________________
  
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 export default () => {
     const store = createStore(
         combineReducers({
             expenses: expensesReducer,
             filters: filtersReducer
         }),
-        applyMiddleware(thunk)
+        composeEnhancers(applyMiddleware(thunk))
         //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
     return store
