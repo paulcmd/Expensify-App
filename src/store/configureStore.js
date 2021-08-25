@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import expensesReducer from '../reducers/expenses'
 import filtersReducer from '../reducers/filters'
 import thunk from 'redux-thunk'
@@ -18,3 +18,9 @@ export default () => {
     )
     return store
 }
+
+
+/* use __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ but if it does not exist
+then fallback to compose from redux
+
+*/
