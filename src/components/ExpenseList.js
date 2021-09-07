@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import ExpenseListItem from './ExpenseListItem'
 import filteredExpenses from '../selectors/expenses'
 
-//exported defaults can be given any name eg. filteredExpense
+//exported defaults can be given any name eg. filteredExpenses
 const ExpenseList = ({ expenses }) => (
     <div>
         <h1>Expense List</h1>
