@@ -22,6 +22,9 @@ export { firebase, database as default }
 
 // we are exporting firebase in case user needs to use it, database is the default export
 
+database.ref('expenses').on('child_changed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val())})
+
 // database
 //     .ref('expenses')
 //     .on('value', (snapshot) => {
