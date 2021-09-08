@@ -6,18 +6,18 @@ import filteredExpenses from '../selectors/expenses'
 //exported defaults can be given any name eg. filteredExpenses
 const ExpenseList = ({ expenses }) => (
     <div>
-        <h1>Expense List</h1>
-        {expenses.map((expense, index) => {
-            return <ExpenseListItem key={index} {...expense} />
-        })}
+        {expenses.length === 0 ? (
+            <p>No Expenses</p>
+        ) : (
+            expenses.map((expense) => {
+                return <ExpenseListItem key={expense.id} {...expense} />
+            })
+        )}
     </div>
 )
 
-const mapStateToProps = (state) => {
-    //store's state is passed in as argument
-    return {
-        expenses: filteredExpenses(state.expenses, state.filters)
-    }
-}
+const mapStateToProps = (state) => ({
+    expenses: filteredExpenses(state.expenses, state.filters)
+})
 
 export default connect(mapStateToProps)(ExpenseList)

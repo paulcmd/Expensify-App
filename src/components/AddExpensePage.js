@@ -6,6 +6,7 @@ import { startAddExpense } from '../actions/expenses'
 const AddExpensePage = ({ history }) => {
     // const history = useHistory()
     const onSubmit = (expense) => {
+        console.log(expense)
         startAddExpense(expense)
         history.push('/')
     }
