@@ -1,12 +1,12 @@
 import React from 'react'
 import ExpenseForm from './ExpenseForm'
 import { connect } from 'react-redux'
-import { addExpense } from '../actions/expenses'
+import { startAddExpense } from '../actions/expenses'
 
 const AddExpensePage = ({ dispatch, history }) => {
     // const history = useHistory()
     const onSubmit = (expense) => {
-        dispatch(addExpense(expense))
+        dispatch(startAddExpense(expense))
         history.push('/')
     }
     return (
@@ -17,6 +17,10 @@ const AddExpensePage = ({ dispatch, history }) => {
         </div>
     )
 }
-export default connect()(AddExpensePage)
+
+const mapDispatchToProps = (dispatch) => ({
+    startAddExpense: (expense)=> dispatch(startAddExpense(expense))
+})
+export default connect(undefined, mapDispatchToProps)(AddExpensePage)
 
 //props.history.push('/') redirects to home(dashboard) when form is submitted
