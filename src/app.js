@@ -3,15 +3,6 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import AppRouter from './routers/AppRouter'
 import configureStore from './store/configureStore'
-import getVisibleExpenses from './selectors/expenses'
-import { addExpense } from './actions/expenses'
-import { removeExpense } from './actions/expenses'
-import { editExpense } from './actions/expenses'
-import { setTextFilter } from './actions/filters'
-import { sortByDate } from './actions/filters'
-import { sortByAmount } from './actions/filters'
-import { setStartDate } from './actions/filters'
-import { setEndDate } from './actions/filters'
 
 
 import 'normalize.css/normalize.css'
@@ -20,6 +11,17 @@ import './firebase/firebase'
 //import './playground/promises'
 
 const store = configureStore()
+
+const jsx = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
+)
+
+//line 65. passing in our store to Provider's store to be distributed to all components
+
+ReactDOM.render(jsx, document.getElementById('app'))
+
 
 // store.subscribe(() => {
 //     const state = store.getState()
@@ -72,12 +74,3 @@ const store = configureStore()
 
 //console.log(store.getState())
 
-const jsx = (
-    <Provider store={store}>        
-        <AppRouter />
-    </Provider>
-)
-
-//line 65. passing in our store to Provider's store to be distributed to all components
-
-ReactDOM.render(jsx, document.getElementById('app'))

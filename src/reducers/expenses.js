@@ -20,6 +20,8 @@ export default (state = expensesReducerDefaultState, action) => {               
                 }
                 return expense //if if statement didnt pass, expense returned with no changes
             })
+        case 'SET_EXPENSES':
+            return action.payload
         default: {
             return state
         }
