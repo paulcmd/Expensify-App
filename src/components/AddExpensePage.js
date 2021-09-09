@@ -3,16 +3,16 @@ import ExpenseForm from './ExpenseForm'
 import { connect } from 'react-redux'
 import { startAddExpense } from '../actions/expenses'
 
-const AddExpensePage = ({ history }) => {
+const AddExpensePage = ({ history, startAddExpense }) => {
     // const history = useHistory()
     const onSubmit = (expense) => {
-        console.log(expense)
+        console.log('Expense from AddExpensePage : ', expense)
         startAddExpense(expense)
         history.push('/')
     }
     return (
         <div>
-            <h1>Expense Form</h1>
+            <h1>Add Expense</h1>
 
             <ExpenseForm onSubmit={onSubmit} />
         </div>

@@ -26,3 +26,5 @@ const mapStateToProps = (state) => {
         expenseTotal: selectExpensesTotal(visibleExpenses)
     }
 }
+
+export default connect(mapStateToProps)(ExpensesSummary)

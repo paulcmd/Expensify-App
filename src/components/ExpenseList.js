@@ -4,20 +4,22 @@ import ExpenseListItem from './ExpenseListItem'
 import filteredExpenses from '../selectors/expenses'
 
 //exported defaults can be given any name eg. filteredExpenses
-const ExpenseList = ({ expenses }) => (
+export const ExpenseList = (props) => (
     <div>
-        {expenses.length === 0 ? (
-            <p>No Expenses</p>
+        {props.expenses.length === 0 ? (
+            <p>No expenses</p>
         ) : (
-            expenses.map((expense) => {
+            props.expenses.map((expense) => {
                 return <ExpenseListItem key={expense.id} {...expense} />
             })
         )}
     </div>
 )
 
-const mapStateToProps = (state) => ({
-    expenses: filteredExpenses(state.expenses, state.filters)
-})
+const mapStateToProps = (state) => {
+    return {
+        expenses: filteredExpenses(state.expenses, state.filters)
+    }
+}
 
 export default connect(mapStateToProps)(ExpenseList)
