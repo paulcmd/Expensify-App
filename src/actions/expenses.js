@@ -1,4 +1,3 @@
-
 import database from '../firebase/firebase'
 
 //ADD_EXPENSE
@@ -19,15 +18,20 @@ export const startAddExpense = (expenseData = {}) => {
 
         const expense = { description, note, amount, createdAt }
 
-        database.ref('expenses').push(expense).then((ref) => { // ref from firebase has the id/key
-            dispatch(addExpense({
-                id: ref.key,
-                ...expense
-            }))
-        })
+        database
+            .ref('expenses')
+            .push(expense)
+            .then((ref) => {
+                // ref from firebase has the id/key
+                dispatch(
+                    addExpense({
+                        id: ref.key,
+                        ...expense
+                    })
+                )
+            })
     }
 }
-
 
 //REMOVE_EXPENSE
 //grab expenses array,  filter out expense to delete by id, return new array
@@ -49,5 +53,27 @@ export const editExpense = (id, updates) => ({
 export const setExpenses = (expenses) => ({
     type: 'SET_EXPENSES',
     expenses
-
 })
+
+export const startSetExpenses = () => {
+    return (dispatch) => {
+        return database
+            .ref('expenses')
+            .once('value')
+            .then((snapshot) => {
+                const expenses = []
+
+                snapshot.forEach((childSnapshot) => {
+                    expenses.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    })
+                })
+                console.log('set_expenses : ', expenses)
+                dispatch(setExpenses(expenses))
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+}
