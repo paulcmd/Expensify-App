@@ -34,11 +34,20 @@ export const startAddExpense = (expenseData = {}) => {
 }
 
 //REMOVE_EXPENSE
-//grab expenses array,  filter out expense to delete by id, return new array
+
 export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 })
+
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+        return database
+            .ref(`expenses/${id}`)
+            .remove()
+            .then(dispatch(removeExpense({ id })))
+    }
+}
 
 //EDIT_EXPENSE
 
@@ -77,3 +86,7 @@ export const startSetExpenses = () => {
             })
     }
 }
+
+/* 
+(dispatch) is passed in automatically from the redux library 
+*/
