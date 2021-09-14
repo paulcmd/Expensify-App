@@ -4,6 +4,8 @@ import { Provider } from 'react-redux'
 import AppRouter from './routers/AppRouter'
 import configureStore from './store/configureStore'
 import { startSetExpenses } from './actions/expenses'
+import { firebase } from './firebase/firebase'
+
 
 
 import 'normalize.css/normalize.css'
@@ -27,6 +29,13 @@ store.dispatch(startSetExpenses()).then(() => {
     ReactDOM.render(jsx, document.getElementById('app'))
 })
 
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log('User is logged in!')
+    } else {
+        console.log('User is logged out!')
+    }
+})
 // store.subscribe(() => {
 //     const state = store.getState()
 //     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
