@@ -11,7 +11,7 @@ const LoginPage = ({ startLogin }) => {
 			Login Page
 			<br />
             <button onClick={startLogin}>
-                {onAuthStateChanged ? 'Logout' : 'Login'}
+                Login
             </button>
         </div>
     )
