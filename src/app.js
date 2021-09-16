@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import AppRouter from './routers/AppRouter'
+import AppRouter, { history } from './routers/AppRouter'
 import configureStore from './store/configureStore'
 import { startSetExpenses } from './actions/expenses'
 import { firebase } from './firebase/firebase'
-import { history } from './routers/AppRouter'
 
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
@@ -24,7 +23,7 @@ const jsx = (
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'))
 
- hasRendered = false
+ let hasRendered = false
 
 // we are doing this so that we dont have to render the app twice. if app is rendered, we leave
 // the if statement

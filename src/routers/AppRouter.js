@@ -1,5 +1,6 @@
 import React from 'react'
 import { Router, Route, Switch, useHistory } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
 import LoginPage from '../components/LoginPage'
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage'
 import AddExpensePage from '../components/AddExpensePage'
@@ -8,7 +9,7 @@ import HelpPage from '../components/HelpPage'
 import NotFoundPage from '../components/NotFoundPage'
 import Header from '../components/Header'
 
-export const history = useHistory()
+ export const history = createHistory()
 
 const AppRouter = () => (
     <Router history={history}>
