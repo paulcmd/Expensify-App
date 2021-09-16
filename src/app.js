@@ -5,8 +5,7 @@ import AppRouter from './routers/AppRouter'
 import configureStore from './store/configureStore'
 import { startSetExpenses } from './actions/expenses'
 import { firebase } from './firebase/firebase'
-
-
+import { history } from './routers/AppRouter'
 
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
@@ -25,14 +24,25 @@ const jsx = (
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'))
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'))
-})
+ hasRendered = false
+
+// we are doing this so that we dont have to render the app twice. if app is rendered, we leave
+// the if statement
+
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'))
+        hasRendered = true
+    }
+}
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        store.dispatch(startSetExpenses()).then(() => renderApp())
         console.log('User is logged in!')
     } else {
+        renderApp()
+        history.push('/')
         console.log('User is logged out!')
     }
 })
@@ -69,8 +79,6 @@ firebase.auth().onAuthStateChanged((user) => {
 //     })
 // )
 
-
-
 // const removeItem = store.dispatch(removeExpense({ id: expenseOne.expense.id }))
 // const editItem = store.dispatch(
 //     editExpense(expenseTwo.expense.id, { amount: 5000 })
@@ -88,4 +96,3 @@ firebase.auth().onAuthStateChanged((user) => {
 //store.dispatch(setEndDate(1250))
 
 //console.log(store.getState())
-
