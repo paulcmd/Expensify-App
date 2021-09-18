@@ -30,7 +30,7 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'))
 
 const renderApp = () => {
     if (!hasRendered) {
-        ReactDOM.render(jsx, document.getElementById('app'))
+        ReactDOM.render(jsx, document.getElementById('appJs'))
         hasRendered = true
     }
 }
