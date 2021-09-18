@@ -43,7 +43,7 @@ firebase.auth().onAuthStateChanged((user) => {
             history.push('/dashboard')
         }
         
-        console.log('User is logged!')
+        console.log('User is logged in!')
     } else {
         renderApp()
         history.push('/')
