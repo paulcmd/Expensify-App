@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { startLogin } from '../actions/auth'
 import { firebase } from '../firebase/firebase'
 
-const onAuthStateChanged = firebase.auth().onAuthStateChanged
+
 
 const LoginPage = ({ startLogin }) => {
     return (

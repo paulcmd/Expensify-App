@@ -35,6 +35,10 @@ const renderApp = () => {
     }
 }
 
+/* 
+when app initially loads, the else statement will run and renderApp(), when user
+signs in, renderApp() will run, but wont re-render jsx because hasRendered will be true
+*/
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         store.dispatch(startSetExpenses()).then(() => renderApp())
