@@ -52,7 +52,7 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         renderApp()
         history.push('/')
-        console.log('User is  out!')
+        console.log('User is logged out!')
     }
 })
 // store.subscribe(() => {
