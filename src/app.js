@@ -41,7 +41,7 @@ signs in, renderApp() will run, but wont re-render jsx because hasRendered will 
 */
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log('uid : ' , user.uid)
+        console.log('uid : ' , user)
         store.dispatch(startSetExpenses()).then(() => renderApp())
 
         if (history.location.pathname === '/') {
