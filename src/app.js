@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import AppRouter, { history } from './routers/AppRouter'
 import configureStore from './store/configureStore'
+import { login, logout } from './reducers/auth'
 import { startSetExpenses } from './actions/expenses'
 import { firebase } from './firebase/firebase'
 
